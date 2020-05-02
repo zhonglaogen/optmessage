@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zlx.bs.dao.dao1.MessageFileMapper">
+
+    <insert id="insetFile" parameterType="cn.zlx.bs.bean.MessageFile" useGeneratedKeys="true" keyProperty="fid">
+        insert into
+         allfiles
+         (title,region, fdate,ftime, addvise,types, enviroment,descri,
+         oname, uname,oid, uid)
+         value (
+         #{title},#{region}, #{fdate}, #{ftime}, #{addvise}, #{types},
+         #{enviroment},#{descri},#{oname}, #{uname}, #{oid},#{uid}
+         )
+    </insert>
+
+    <!--查询历史添加记录,传入参数为oid-->
+    <select id="findHistoryInsert" parameterType="java.lang.Integer" resultType="cn.zlx.bs.bean.MessageFile">
+        select * from allfiles where  oid = #{oid} order by fid
+    </select>
+
+    <!--分页,先查到uid,在查询档案-->
+    <select id="findUserAllFile" parameterType="java.lang.Integer" resultType="cn.zlx.bs.bean.MessageFile">
+        select * from allfiles where uid = #{uid}
+    </select>
+
+
+</mapper>

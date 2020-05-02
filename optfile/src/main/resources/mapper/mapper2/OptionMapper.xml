@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zlx.bs.dao.dao2.OptionMapper">
+
+    <select id="getMessage" resultType="cn.zlx.bs.bean.Option" >
+        select * from showboard order by id desc
+    </select>
+
+    <insert id="insertMessage" parameterType="cn.zlx.bs.bean.Option">
+        insert into showboard(name, email, cretime, message) value (#{name},#{email},#{cretime},#{message})
+    </insert>
+
+</mapper>

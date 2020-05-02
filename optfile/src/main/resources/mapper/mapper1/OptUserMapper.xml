@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zlx.bs.dao.dao1.OptUserMapper">
+    <resultMap id="findUserMap" type="cn.zlx.bs.bean.OptUser">
+        <id column="oid" property="oid" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="reason" property="reason" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="canuse" property="canuse" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getUserByEmail" parameterType="java.lang.String" resultMap="findUserMap">
+          select * from organization where email = #{email}
+    </select>
+
+    <insert id="insertUser" parameterType="cn.zlx.bs.bean.OptUser" useGeneratedKeys="true" keyProperty="oid" >
+        insert into organization (name,email,reason,phone,password)
+        value(#{name},#{email},#{reason},#{phone},#{password})
+    </insert>
+</mapper>
